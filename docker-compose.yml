@@ -9,7 +9,7 @@ services:
     image: Test.local
     
     ports:
-        - 8180:80
+        - 8280:80
     
     volumes:
       - /home/ibm/Stickers/app:/var/www/html
@@ -25,7 +25,7 @@ services:
     image: mariadb
 
     ports:
-      - 13308:3306
+      - 13309:3306
 
     environment:
       MYSQL_USERNAME: examplepass
@@ -38,7 +38,7 @@ services:
       - PMA_HOST=db
     restart: always
     ports:
-      - 8181:80
+      - 8281:80
     volumes:
       - /sessions
     links:
