@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: .docker/app.dockerfile
 
-    image: Test.local
+    image: test_stickers.local
     
     ports:
         - 8280:80
