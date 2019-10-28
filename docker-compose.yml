@@ -1,0 +1,45 @@
+# use version 2 of the docker compose syntax
+version: '2'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: .docker/app.dockerfile
+
+    image: Test.local
+    
+    ports:
+        - 8180:80
+    
+    volumes:
+      - /home/ibm/Stickers/app:/var/www/html
+    
+    depends_on:
+      - db
+    
+    links:
+      - db
+  
+  db:
+    # use a default image
+    image: mariadb
+
+    ports:
+      - 13308:3306
+
+    environment:
+      MYSQL_USERNAME: examplepass
+      MYSQL_ROOT_PASSWORD: examplepass
+
+  phpmyadmin: #por un puto espacio no anda el archivo del re culo :c
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_HOST=db
+    restart: always
+    ports:
+      - 8181:80
+    volumes:
+      - /sessions
+    links:
+      - db
